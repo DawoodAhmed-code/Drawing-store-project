@@ -1,0 +1,6 @@
+{
+  "name": "RajaCAD - Professional MEP & AutoCAD Marketplace",
+  "description": "Buy, inspect, and download professional AutoCAD DWG drawings, MEP draughtsman packages, HVAC ducting, electrical SLDs, fire fighting, and plumbing plans.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

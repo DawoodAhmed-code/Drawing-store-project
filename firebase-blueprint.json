@@ -1,0 +1,125 @@
+{
+  "entities": {
+    "CadItem": {
+      "title": "CadItem",
+      "description": "AutoCAD drawing package or MEP blueprint available on RajaCAD",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string", "maxLength": 200 },
+        "category": { "type": "string", "maxLength": 50 },
+        "subCategory": { "type": "string", "maxLength": 80 },
+        "description": { "type": "string", "maxLength": 2000 },
+        "price": { "type": "number" },
+        "originalPrice": { "type": "number" },
+        "currency": { "type": "string", "maxLength": 10 },
+        "fileFormat": { "type": "string", "maxLength": 50 },
+        "fileSize": { "type": "string", "maxLength": 30 },
+        "dwgVersion": { "type": "string", "maxLength": 30 },
+        "layersCount": { "type": "number" },
+        "isFree": { "type": "boolean" },
+        "featured": { "type": "boolean" },
+        "rating": { "type": "number" },
+        "downloadsCount": { "type": "number" },
+        "tags": { "type": "array" },
+        "software": { "type": "array" },
+        "author": { "type": "string", "maxLength": 100 },
+        "authorId": { "type": "string", "maxLength": 128 },
+        "previewSvg": { "type": "string", "maxLength": 50000 },
+        "layers": { "type": "array" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["title", "category", "price", "fileFormat", "dwgVersion"]
+    },
+    "User": {
+      "title": "User",
+      "description": "User profile document",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "maxLength": 128 },
+        "email": { "type": "string", "maxLength": 255 },
+        "displayName": { "type": "string", "maxLength": 150 },
+        "photoURL": { "type": "string", "maxLength": 1000 },
+        "role": { "type": "string", "maxLength": 30 },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "email"]
+    },
+    "Order": {
+      "title": "Order",
+      "description": "Purchased drawing transaction and invoice",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "maxLength": 128 },
+        "userEmail": { "type": "string", "maxLength": 255 },
+        "userName": { "type": "string", "maxLength": 150 },
+        "items": { "type": "array" },
+        "totalAmount": { "type": "number" },
+        "currency": { "type": "string", "maxLength": 10 },
+        "paymentMethod": { "type": "string", "maxLength": 50 },
+        "status": { "type": "string", "maxLength": 30 },
+        "licenseKey": { "type": "string", "maxLength": 100 },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "userEmail", "items", "totalAmount", "status", "licenseKey"]
+    },
+    "Download": {
+      "title": "Download",
+      "description": "Purchased library item authorized for download by a specific user",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "maxLength": 128 },
+        "itemId": { "type": "string", "maxLength": 128 },
+        "itemTitle": { "type": "string", "maxLength": 200 },
+        "category": { "type": "string", "maxLength": 80 },
+        "dwgVersion": { "type": "string", "maxLength": 30 },
+        "fileFormat": { "type": "string", "maxLength": 50 },
+        "fileSize": { "type": "string", "maxLength": 30 },
+        "licenseKey": { "type": "string", "maxLength": 100 },
+        "orderId": { "type": "string", "maxLength": 128 },
+        "downloadCount": { "type": "number" },
+        "lastDownloadedAt": { "type": "string", "format": "date-time" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "itemId", "itemTitle", "licenseKey"]
+    },
+    "CustomRequest": {
+      "title": "CustomRequest",
+      "description": "Custom MEP draughting or CAD drawing request from client",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "maxLength": 128 },
+        "userEmail": { "type": "string", "maxLength": 255 },
+        "userName": { "type": "string", "maxLength": 150 },
+        "projectType": { "type": "string", "maxLength": 100 },
+        "scope": { "type": "string", "maxLength": 2000 },
+        "urgency": { "type": "string", "maxLength": 50 },
+        "phone": { "type": "string", "maxLength": 50 },
+        "status": { "type": "string", "maxLength": 30 },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "userEmail", "projectType", "scope"]
+    }
+  },
+  "firestore": {
+    "/cad_items/{itemId}": {
+      "schema": "CadItem",
+      "description": "Public catalog of AutoCAD files and MEP drawing packages"
+    },
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profiles and credentials"
+    },
+    "/orders/{orderId}": {
+      "schema": "Order",
+      "description": "Customer purchase orders and receipts"
+    },
+    "/downloads/{downloadId}": {
+      "schema": "Download",
+      "description": "Purchased user file library entries and download entitlements"
+    },
+    "/custom_requests/{requestId}": {
+      "schema": "CustomRequest",
+      "description": "Client custom MEP drawing inquiries"
+    }
+  }
+}

@@ -1,0 +1,91 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-primary: #f8fafc;
+    --bg-secondary: #f1f5f9;
+    --card-bg: #ffffff;
+    --border-color: #e2e8f0;
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --accent-blue: #0284c7;
+    --blueprint-grid: rgba(2, 132, 199, 0.08);
+  }
+
+  .dark {
+    --bg-primary: #060c18; /* Deep engineering navy */
+    --bg-secondary: #0a1324;
+    --card-bg: #0d1930;
+    --border-color: #1a2a47;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --accent-blue: #00f0ff;
+    --blueprint-grid: rgba(0, 240, 255, 0.05);
+  }
+
+  body {
+    font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    letter-spacing: -0.01em;
+  }
+}
+
+/* CAD Technical Blueprint Grid Background */
+.cad-grid-pattern {
+  background-image: 
+    linear-gradient(to right, var(--blueprint-grid) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--blueprint-grid) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.cad-grid-pattern-lg {
+  background-image: 
+    linear-gradient(to right, var(--blueprint-grid) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--blueprint-grid) 1px, transparent 1px),
+    linear-gradient(to right, var(--blueprint-grid) 2px, transparent 2px),
+    linear-gradient(to bottom, var(--blueprint-grid) 2px, transparent 2px);
+  background-size: 20px 20px, 20px 20px, 100px 100px, 100px 100px;
+}
+
+/* Monospace font for CAD specs, coordinates, and codes */
+.font-mono,
+.font-mono-cad {
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace !important;
+}
+
+/* Smooth transition for theme toggle */
+body {
+  transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Subtle glowing pulse for CAD viewport elements */
+@keyframes navy-glow {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.15), inset 0 0 15px rgba(2, 132, 199, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(0, 240, 255, 0.3), inset 0 0 20px rgba(2, 132, 199, 0.2);
+  }
+}
+
+.animate-cad-glow {
+  animation: navy-glow 4s ease-in-out infinite;
+}
+
+/* Custom sleek scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 9999px;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: #1e3a5f;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #00f0ff;
+}
